@@ -29,5 +29,6 @@ app.listen(PORT, ()=>{
 const cellFood = require('./routes/cellfood')
 const cellweight = require('./routes/cellweight')
 const phdata = require('./routes/phsensor')
+const rfid = require('./routes/rfid')
 
-app.use('/api', cellFood, cellweight, phdata)
+app.use('/api', cellFood, cellweight, phdata, rfid)
