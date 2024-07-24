@@ -28,5 +28,6 @@ app.listen(PORT, ()=>{
 // Routes
 const cellFood = require('./routes/cellfood')
 const cellweight = require('./routes/cellweight')
+const phdata = require('./routes/phsensor')
 
-app.use('/api', cellFood, cellweight)
+app.use('/api', cellFood, cellweight, phdata)
