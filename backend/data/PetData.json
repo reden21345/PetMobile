@@ -1,0 +1,436 @@
+{
+    "_type": "export",
+    "__export_format": 4,
+    "__export_date": "2024-07-23T13:28:22.120Z",
+    "__export_source": "insomnia.desktop.app:v2023.5.7",
+    "resources": [
+      {
+        "_id": "req_b9e83bd725c646a1b75336eaffca566f",
+        "parentId": "fld_503113aa643d4eb2abe2f3d87724a705",
+        "modified": 1721661232734,
+        "created": 1721568447472,
+        "url": "http://localhost:3001/api/ph-data",
+        "name": "create",
+        "description": "",
+        "method": "POST",
+        "body": {
+          "mimeType": "application/json",
+          "text": "{\n\t\t\"ph\": 2,\n\t\t\"category\": \"Acidic\",\n\t\t\"unit\": \"pH\",\n\t\t\"__v\": 0\n\t}"
+        },
+        "parameters": [],
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "name": "User-Agent",
+            "value": "Insomnia/2023.5.7"
+          }
+        ],
+        "authentication": {},
+        "metaSortKey": -1721568447472,
+        "isPrivate": false,
+        "settingStoreCookies": true,
+        "settingSendCookies": true,
+        "settingDisableRenderRequestBody": false,
+        "settingEncodeUrl": true,
+        "settingRebuildPath": true,
+        "settingFollowRedirects": "global",
+        "_type": "request"
+      },
+      {
+        "_id": "fld_503113aa643d4eb2abe2f3d87724a705",
+        "parentId": "wrk_2b1106df9c6b4324a135fe31caee6147",
+        "modified": 1721568436737,
+        "created": 1721568436737,
+        "name": "Ph Sensor",
+        "description": "",
+        "environment": {},
+        "environmentPropertyOrder": null,
+        "metaSortKey": -1721568436737,
+        "_type": "request_group"
+      },
+      {
+        "_id": "wrk_2b1106df9c6b4324a135fe31caee6147",
+        "parentId": null,
+        "modified": 1721741279436,
+        "created": 1701442261187,
+        "name": "raspi",
+        "description": "",
+        "scope": "collection",
+        "_type": "workspace"
+      },
+      {
+        "_id": "req_d8baf0356ae64cf991ae61967f4a8c81",
+        "parentId": "fld_503113aa643d4eb2abe2f3d87724a705",
+        "modified": 1721569860089,
+        "created": 1721568444328,
+        "url": "http://localhost:3001/api/ph-data",
+        "name": "get",
+        "description": "",
+        "method": "GET",
+        "body": {},
+        "parameters": [],
+        "headers": [
+          {
+            "name": "User-Agent",
+            "value": "Insomnia/2023.5.7"
+          }
+        ],
+        "authentication": {},
+        "metaSortKey": -1721568444328,
+        "isPrivate": false,
+        "settingStoreCookies": true,
+        "settingSendCookies": true,
+        "settingDisableRenderRequestBody": false,
+        "settingEncodeUrl": true,
+        "settingRebuildPath": true,
+        "settingFollowRedirects": "global",
+        "_type": "request"
+      },
+      {
+        "_id": "req_362355ae41a74abeb0b2d086d5750520",
+        "parentId": "fld_a3ad0bdf35ac4cf7a0617bf502f7d309",
+        "modified": 1721571450705,
+        "created": 1721568454939,
+        "url": "http://localhost:3001/api/rfid-data",
+        "name": "create",
+        "description": "",
+        "method": "POST",
+        "body": {
+          "mimeType": "application/json",
+          "text": "{\n    \"uid\": \"A1B2C3D4\",\n    \"timestamp\": \"2024-07-21T12:34:56Z\"\n  }\n"
+        },
+        "parameters": [],
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "name": "User-Agent",
+            "value": "Insomnia/2023.5.7"
+          }
+        ],
+        "authentication": {},
+        "metaSortKey": -1721568454939,
+        "isPrivate": false,
+        "settingStoreCookies": true,
+        "settingSendCookies": true,
+        "settingDisableRenderRequestBody": false,
+        "settingEncodeUrl": true,
+        "settingRebuildPath": true,
+        "settingFollowRedirects": "global",
+        "_type": "request"
+      },
+      {
+        "_id": "fld_a3ad0bdf35ac4cf7a0617bf502f7d309",
+        "parentId": "wrk_2b1106df9c6b4324a135fe31caee6147",
+        "modified": 1721568426889,
+        "created": 1721568426889,
+        "name": "RFID Sensor",
+        "description": "",
+        "environment": {},
+        "environmentPropertyOrder": null,
+        "metaSortKey": -1721568426889,
+        "_type": "request_group"
+      },
+      {
+        "_id": "req_17f377834b75441e87f7995230bbaf8e",
+        "parentId": "fld_a3ad0bdf35ac4cf7a0617bf502f7d309",
+        "modified": 1721571309286,
+        "created": 1721568452945,
+        "url": "http://localhost:3001/api/rfid-data",
+        "name": "get",
+        "description": "",
+        "method": "GET",
+        "body": {},
+        "parameters": [],
+        "headers": [
+          {
+            "name": "User-Agent",
+            "value": "Insomnia/2023.5.7"
+          }
+        ],
+        "authentication": {},
+        "metaSortKey": -1721568452945,
+        "isPrivate": false,
+        "settingStoreCookies": true,
+        "settingSendCookies": true,
+        "settingDisableRenderRequestBody": false,
+        "settingEncodeUrl": true,
+        "settingRebuildPath": true,
+        "settingFollowRedirects": "global",
+        "_type": "request"
+      },
+      {
+        "_id": "req_81860f015cd0447ba2d7b100bbbfa870",
+        "parentId": "fld_43e2223e906b4cd19b76cd06721af01b",
+        "modified": 1721656511894,
+        "created": 1721568458866,
+        "url": "http://localhost:3001/api/loadcell-food-data",
+        "name": "create",
+        "description": "",
+        "method": "POST",
+        "body": {
+          "mimeType": "application/json",
+          "text": "{\n\t\"weight\": 14,\n\t\"unit\": \"g\",\n\t\"__v\": 0\n}\n"
+        },
+        "parameters": [],
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "name": "User-Agent",
+            "value": "Insomnia/2023.5.7"
+          }
+        ],
+        "authentication": {},
+        "metaSortKey": -1721568458866,
+        "isPrivate": false,
+        "settingStoreCookies": true,
+        "settingSendCookies": true,
+        "settingDisableRenderRequestBody": false,
+        "settingEncodeUrl": true,
+        "settingRebuildPath": true,
+        "settingFollowRedirects": "global",
+        "_type": "request"
+      },
+      {
+        "_id": "fld_43e2223e906b4cd19b76cd06721af01b",
+        "parentId": "wrk_2b1106df9c6b4324a135fe31caee6147",
+        "modified": 1721568408678,
+        "created": 1721568408678,
+        "name": "Load Cell Food Sensor",
+        "description": "",
+        "environment": {},
+        "environmentPropertyOrder": null,
+        "metaSortKey": -1721568408678,
+        "_type": "request_group"
+      },
+      {
+        "_id": "req_28ac7ae72c3c4385b162f0017d5cc954",
+        "parentId": "fld_43e2223e906b4cd19b76cd06721af01b",
+        "modified": 1721656419110,
+        "created": 1721568456717,
+        "url": "http://localhost:3001/api/loadcell-food-data",
+        "name": "get",
+        "description": "",
+        "method": "GET",
+        "body": {
+          "mimeType": "application/json",
+          "text": ""
+        },
+        "parameters": [],
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "name": "User-Agent",
+            "value": "Insomnia/2023.5.7"
+          }
+        ],
+        "authentication": {},
+        "metaSortKey": -1721568456717,
+        "isPrivate": false,
+        "settingStoreCookies": true,
+        "settingSendCookies": true,
+        "settingDisableRenderRequestBody": false,
+        "settingEncodeUrl": true,
+        "settingRebuildPath": true,
+        "settingFollowRedirects": "global",
+        "_type": "request"
+      },
+      {
+        "_id": "req_4cb9631e157043a987890cbfa76e04c0",
+        "parentId": "fld_345f5f61669f4ff4870d90281fb2cca6",
+        "modified": 1721656503930,
+        "created": 1721568463754,
+        "url": "http://localhost:3001/api/foodlevel-data",
+        "name": "create",
+        "description": "",
+        "method": "POST",
+        "body": {
+          "mimeType": "application/json",
+          "text": "{\n    \"foodLevel\": 150,\n    \"unit\": \"g\"\n  }\n\n"
+        },
+        "parameters": [],
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "name": "User-Agent",
+            "value": "Insomnia/2023.5.7"
+          }
+        ],
+        "authentication": {},
+        "metaSortKey": -1721568463754,
+        "isPrivate": false,
+        "settingStoreCookies": true,
+        "settingSendCookies": true,
+        "settingDisableRenderRequestBody": false,
+        "settingEncodeUrl": true,
+        "settingRebuildPath": true,
+        "settingFollowRedirects": "global",
+        "_type": "request"
+      },
+      {
+        "_id": "fld_345f5f61669f4ff4870d90281fb2cca6",
+        "parentId": "wrk_2b1106df9c6b4324a135fe31caee6147",
+        "modified": 1721568396979,
+        "created": 1721568396979,
+        "name": "Ultrasonic Sensor",
+        "description": "",
+        "environment": {},
+        "environmentPropertyOrder": null,
+        "metaSortKey": -1721568396979,
+        "_type": "request_group"
+      },
+      {
+        "_id": "req_7383ea9ce30b4e6fa9ac3156db8c4387",
+        "parentId": "fld_345f5f61669f4ff4870d90281fb2cca6",
+        "modified": 1721571544334,
+        "created": 1721568461480,
+        "url": "http://localhost:3001/api/foodlevel-data",
+        "name": "get",
+        "description": "",
+        "method": "GET",
+        "body": {},
+        "parameters": [],
+        "headers": [
+          {
+            "name": "User-Agent",
+            "value": "Insomnia/2023.5.7"
+          }
+        ],
+        "authentication": {},
+        "metaSortKey": -1721568461480,
+        "isPrivate": false,
+        "settingStoreCookies": true,
+        "settingSendCookies": true,
+        "settingDisableRenderRequestBody": false,
+        "settingEncodeUrl": true,
+        "settingRebuildPath": true,
+        "settingFollowRedirects": "global",
+        "_type": "request"
+      },
+      {
+        "_id": "req_5e8c53f4e041481b8a4cfb250ff9291c",
+        "parentId": "fld_653a1d09713041e88a569c2246123478",
+        "modified": 1721656462500,
+        "created": 1721568468154,
+        "url": "http://localhost:3001/api/waterlevel-data",
+        "name": "create",
+        "description": "",
+        "method": "POST",
+        "body": {
+          "mimeType": "application/json",
+          "text": "{\n\t\t\"waterLevel\": 42,\n\t\t\"unit\": \"%\",\n\t\t\"__v\": 0\n\t}"
+        },
+        "parameters": [],
+        "headers": [
+          {
+            "name": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "name": "User-Agent",
+            "value": "Insomnia/2023.5.7"
+          }
+        ],
+        "authentication": {},
+        "metaSortKey": -1721568468154,
+        "isPrivate": false,
+        "settingStoreCookies": true,
+        "settingSendCookies": true,
+        "settingDisableRenderRequestBody": false,
+        "settingEncodeUrl": true,
+        "settingRebuildPath": true,
+        "settingFollowRedirects": "global",
+        "_type": "request"
+      },
+      {
+        "_id": "fld_653a1d09713041e88a569c2246123478",
+        "parentId": "wrk_2b1106df9c6b4324a135fe31caee6147",
+        "modified": 1721568384546,
+        "created": 1721568384546,
+        "name": "Water Sensor",
+        "description": "",
+        "environment": {},
+        "environmentPropertyOrder": null,
+        "metaSortKey": -1721568384546,
+        "_type": "request_group"
+      },
+      {
+        "_id": "req_13c2b4db66da444ca1930c59d6cec058",
+        "parentId": "fld_653a1d09713041e88a569c2246123478",
+        "modified": 1721571337893,
+        "created": 1721568465987,
+        "url": "http://localhost:3001/api/waterlevel-data",
+        "name": "get",
+        "description": "",
+        "method": "GET",
+        "body": {},
+        "parameters": [],
+        "headers": [
+          {
+            "name": "User-Agent",
+            "value": "Insomnia/2023.5.7"
+          }
+        ],
+        "authentication": {},
+        "metaSortKey": -1721568465988,
+        "isPrivate": false,
+        "settingStoreCookies": true,
+        "settingSendCookies": true,
+        "settingDisableRenderRequestBody": false,
+        "settingEncodeUrl": true,
+        "settingRebuildPath": true,
+        "settingFollowRedirects": "global",
+        "_type": "request"
+      },
+      {
+        "_id": "env_f2f469426a5257fc32e3b06513bda7226729ea48",
+        "parentId": "wrk_2b1106df9c6b4324a135fe31caee6147",
+        "modified": 1701442261195,
+        "created": 1701442261195,
+        "name": "Base Environment",
+        "data": {},
+        "dataPropertyOrder": null,
+        "color": null,
+        "isPrivate": false,
+        "metaSortKey": 1701442261195,
+        "_type": "environment"
+      },
+      {
+        "_id": "jar_f2f469426a5257fc32e3b06513bda7226729ea48",
+        "parentId": "wrk_2b1106df9c6b4324a135fe31caee6147",
+        "modified": 1701613314425,
+        "created": 1701442261198,
+        "name": "Default Jar",
+        "cookies": [
+          {
+            "key": "token",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NTZhMDZhODdiMjRmNTllY2IyMTg0MmQiLCJ1c2VybmFtZSI6ImpheXNvbjUiLCJpYXQiOjE3MDE2MTMzMTR9.RCJiIRgkIB4JDDy7Ws70qhUZiTDeATnVlhWQgvUP_iA",
+            "domain": "localhost",
+            "path": "/",
+            "secure": true,
+            "hostOnly": true,
+            "creation": "2023-12-01T15:24:02.940Z",
+            "lastAccessed": "2023-12-03T14:21:54.425Z",
+            "sameSite": "none",
+            "id": "6513626393158236"
+          }
+        ],
+        "_type": "cookie_jar"
+      }
+    ]
+  }
+  
