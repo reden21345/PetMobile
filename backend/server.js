@@ -27,5 +27,6 @@ app.listen(PORT, ()=>{
 
 // Routes
 const cellFood = require('./routes/cellfood')
+const cellweight = require('./routes/cellweight')
 
-app.use('/api', cellFood)
+app.use('/api', cellFood, cellweight)

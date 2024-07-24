@@ -15,13 +15,5 @@ const loadCellSchema = mongoose.Schema({
     },
 })
 
-loadCellSchema.virtual('id').get(function () {
-    return this._id.toHexString();
-});
-
-loadCellSchema.set('toJSON', {
-    virtuals: true,
-});
-
 // mongoose.model('LoadCell', loadCellSchema)
 exports.LoadCell = mongoose.model('LoadCell', loadCellSchema);
