@@ -31,5 +31,6 @@ const cellweight = require('./routes/cellweight')
 const phdata = require('./routes/phsensor')
 const rfid = require('./routes/rfid')
 const ultrasonic = require('./routes/ultrasonic')
+const waterLevel = require('./routes/watersensor')
 
-app.use('/api', cellFood, cellweight, phdata, rfid, ultrasonic)
+app.use('/api', cellFood, cellweight, phdata, rfid, ultrasonic, waterLevel)
