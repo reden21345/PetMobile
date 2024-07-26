@@ -6,7 +6,7 @@ import baseURL from '../../../assets/common/baseurl';
 import axios from 'axios';
 
 const DataTableScreen = () => {
-  const [tableHead, setTableHead] = useState(['Weight', 'Unit', 'Time']);
+  const [tableHead, setTableHead] = useState(['Food Weight', 'Unit', 'Time']);
   const [tableData, setTableData] = useState([]);
 
   // Fetch data from the backend using axios
@@ -16,10 +16,11 @@ const DataTableScreen = () => {
         const response = await axios.get(`${baseURL}/loadcell-food-data`);
         const data = response.data;
 
-        console.log('Fetched data:', data);
-
         if (Array.isArray(data)) {
-          const formattedData = data.map(item => [
+          // Sort data by timestamp in descending order
+          const sortedData = data.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+          
+          const formattedData = sortedData.map(item => [
             item.weight,
             item.unit,
             new Date(item.timestamp).toLocaleString(),
@@ -40,7 +41,7 @@ const DataTableScreen = () => {
     <View style={styles.container}>
       <Header title="Pet Feeder Monitoring System" />
       <Text style={styles.title}>Food Dispense History</Text>
-      <ScrollView >
+      <ScrollView>
         <View style={styles.tableContainer}>
           <Table borderStyle={{ borderWidth: 2, borderColor: '#c8e1ff' }}>
             <Row data={tableHead} style={styles.head} textStyle={styles.text} widthArr={[120, 80, 200]} />

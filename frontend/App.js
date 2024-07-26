@@ -38,7 +38,7 @@ export default function App() {
             } else if (route.name === 'CellWeight') {
               iconName = 'barbell';
             } else if (route.name === 'PHsensor') {
-              iconName = 'water';
+              iconName = 'scale';
             } else if (route.name === 'RFID') {
               iconName = 'key';
             } else if (route.name === 'FoodLevel') {

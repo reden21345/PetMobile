@@ -16,10 +16,11 @@ const DataTableScreen = () => {
         const response = await axios.get(`${baseURL}/rfid-data`);
         const data = response.data;
 
-        console.log('Fetched data:', data);
-
         if (Array.isArray(data)) {
-          const formattedData = data.map(item => [
+          // Sort data by timestamp in descending order
+          const sortedData = data.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+          const formattedData = sortedData.map(item => [
             item.uid,
             new Date(item.timestamp).toLocaleString(),
           ]);
