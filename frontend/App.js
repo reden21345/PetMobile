@@ -1,24 +1,16 @@
 import React from 'react';
+import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { StyleSheet, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
+import Home from './src/screens/Home';
 import CellFood from './src/screens/sensors/CellFoodData';
 import CellWeight from './src/screens/sensors/CellWeightData';
 import PHsensor from './src/screens/sensors/PHsensorData';
 import RFID from './src/screens/sensors/RfidData';
 import FoodLevel from './src/screens/sensors/UltrasonicData';
 import WaterLevel from './src/screens/sensors/WaterSensorData';
-
-// Home Screen Component
-const HomeScreen = () => {
-  return (
-    <View style={styles.homeContainer}>
-      <Text style={styles.homeTitle}>Pet Feeder Monitoring System</Text>
-    </View>
-  );
-};
 
 const Tab = createBottomTabNavigator();
 
@@ -38,7 +30,7 @@ export default function App() {
             } else if (route.name === 'CellWeight') {
               iconName = 'barbell';
             } else if (route.name === 'PHsensor') {
-              iconName = 'scale';
+              iconName = 'water';
             } else if (route.name === 'RFID') {
               iconName = 'key';
             } else if (route.name === 'FoodLevel') {
@@ -53,7 +45,7 @@ export default function App() {
           tabBarInactiveTintColor: 'gray',
         })}
       >
-        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="Home" component={Home} />
         <Tab.Screen name="CellFood" component={CellFood} />
         <Tab.Screen name="CellWeight" component={CellWeight} />
         <Tab.Screen name="PHsensor" component={PHsensor} />
@@ -66,16 +58,6 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  homeContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-  },
-  homeTitle: {
-    fontSize: 24,
-    fontWeight: 'bold',
-  },
   container: {
     flex: 1,
     backgroundColor: '#fff',
