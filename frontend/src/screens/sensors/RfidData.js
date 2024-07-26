@@ -1,27 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { Table, Row, Rows } from 'react-native-table-component';
-import Header from '../components/Header';
-import baseURL from '../../assets/common/baseurl';
+import Header from '../../components/Header';
+import baseURL from '../../../assets/common/baseurl';
 import axios from 'axios';
 
 const DataTableScreen = () => {
-  const [tableHead, setTableHead] = useState(['Weight', 'Unit', 'Time']);
+  const [tableHead, setTableHead] = useState(['UID', 'Time']);
   const [tableData, setTableData] = useState([]);
 
   // Fetch data from the backend using axios
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${baseURL}/loadcell-food-data`);
+        const response = await axios.get(`${baseURL}/rfid-data`);
         const data = response.data;
 
         console.log('Fetched data:', data);
 
         if (Array.isArray(data)) {
           const formattedData = data.map(item => [
-            item.weight,
-            item.unit,
+            item.uid,
             new Date(item.timestamp).toLocaleString(),
           ]);
           setTableData(formattedData);
@@ -39,12 +38,12 @@ const DataTableScreen = () => {
   return (
     <View style={styles.container}>
       <Header title="Pet Feeder Monitoring System" />
-      <Text style={styles.title}>Food History</Text>
+      <Text style={styles.title}>Pet Identity History</Text>
       <ScrollView >
         <View style={styles.tableContainer}>
           <Table borderStyle={{ borderWidth: 2, borderColor: '#c8e1ff' }}>
-            <Row data={tableHead} style={styles.head} textStyle={styles.text} widthArr={[120, 80, 200]} />
-            <Rows data={tableData} textStyle={styles.text} widthArr={[120, 80, 200]} />
+            <Row data={tableHead} style={styles.head} textStyle={styles.text} widthArr={[150, 200]} />
+            <Rows data={tableData} textStyle={styles.text} widthArr={[150, 200]} />
           </Table>
         </View>
       </ScrollView>
