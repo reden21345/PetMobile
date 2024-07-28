@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import axios from 'axios';
 import { FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons';
 import baseURL from '../../assets/common/baseurl';
+import Header from '../components/Header';
 
 const Home = () => {
   const [latestData, setLatestData] = useState({
@@ -68,6 +69,7 @@ const Home = () => {
 
   return (
     <ScrollView style={styles.container}>
+      <Header title="Pet Feeder Monitoring" />
       <Text style={styles.title}>Latest Sensor Data</Text>
       <View style={styles.chartContainer}>
         {renderScale(
