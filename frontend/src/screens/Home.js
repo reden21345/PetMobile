@@ -50,7 +50,10 @@ const Home = () => {
   };
 
   useEffect(() => {
-    fetchLatestData();
+    fetchLatestData(); // Initial fetch
+    const interval = setInterval(fetchLatestData, 3000); // Fetch every 3 seconds
+
+    return () => clearInterval(interval); // Cleanup on component unmount
   }, []);
 
   const renderScale = (title, value, icon, unit, style) => (
@@ -58,7 +61,7 @@ const Home = () => {
       <Text style={styles.sensorTitle}>{title}</Text>
       <View style={[styles.scale, style]}>
         {icon}
-        <Text style={styles.scaleText}>{value || 'N/A'} {unit}</Text>
+        <Text style={styles.scaleText}>{value !== undefined && value !== null ? `${value} ${unit}` : 'N/A'}</Text>
       </View>
     </View>
   );
@@ -85,7 +88,7 @@ const Home = () => {
           'pH',
           latestData.pH.ph,
           <MaterialCommunityIcons name="water-percent" size={64} color="black" />,
-          '',
+          'pH',
           styles.pH
         )}
         {renderScale(
