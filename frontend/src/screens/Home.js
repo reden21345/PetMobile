@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import axios from 'axios';
 import { FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons';
 import baseURL from '../../assets/common/baseurl';
 import Header from '../components/Header';
+import Toast from 'react-native-toast-message';
 
 const Home = () => {
   const [latestData, setLatestData] = useState({
@@ -37,14 +38,40 @@ const Home = () => {
         return data.length ? data[data.length - 1] : {};
       };
 
-      setLatestData({
+      const newLatestData = {
         cellFood: processLatestData(cellFoodResponse.data),
         cellWeight: processLatestData(cellWeightResponse.data),
         pH: processLatestData(pHResponse.data),
         rfid: processLatestData(rfidResponse.data),
         foodLevel: processLatestData(foodLevelResponse.data),
         waterLevel: processLatestData(waterLevelResponse.data),
-      });
+      };
+
+      setLatestData(newLatestData);
+
+      // Toast conditions
+      if (newLatestData.foodLevel.foodLevel <= 20) {
+        Toast.show({
+          type: 'error',
+          text1: 'Warning',
+          text2: 'Food stock is low!',
+          topOffset: 60,
+          props: {
+            onClose: () => Toast.hide(), // Adding close button functionality
+          },
+        });
+      }
+      if (newLatestData.pH.ph <= 6 || newLatestData.pH.ph > 8) {
+        Toast.show({
+          type: 'error',
+          text1: 'Warning',
+          text2: 'pH level is not safe!',
+          topOffset: 60,
+          props: {
+            onClose: () => Toast.hide(), // Adding close button functionality
+          },
+        });
+      }
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -115,6 +142,17 @@ const Home = () => {
           styles.waterLevel
         )}
       </View>
+      <Toast config={{
+        error: ({ text1, text2, props }) => (
+          <View style={styles.toastContainer}>
+            <Text style={styles.toastText1}>{text1}</Text>
+            <Text style={styles.toastText2}>{text2}</Text>
+            <TouchableOpacity onPress={props.onClose}>
+              <Text style={styles.toastCloseButton}>X</Text>
+            </TouchableOpacity>
+          </View>
+        ),
+      }} />
     </ScrollView>
   );
 };
@@ -133,6 +171,10 @@ const styles = StyleSheet.create({
   rfid: { borderColor: '#8e44ad', backgroundColor: '#d7bde2' },
   foodLevel: { borderColor: '#e67e22', backgroundColor: '#f0b27a' },
   waterLevel: { borderColor: '#3498db', backgroundColor: '#85c1e9' },
+  toastContainer: { flexDirection: 'row', alignItems: 'center', backgroundColor: 'red', padding: 10, borderRadius: 5 },
+  toastText1: { color: 'white', fontWeight: 'bold', marginRight: 10 },
+  toastText2: { color: 'white', marginRight: 10 },
+  toastCloseButton: { color: 'white', fontWeight: 'bold' },
 });
 
 export default Home;

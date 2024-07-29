@@ -3,6 +3,8 @@ import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
+import Toast from 'react-native-toast-message';
+import ToastifyContainer from 'toastify-react-native';
 
 import Home from './src/screens/Home';
 import CellFood from './src/screens/sensors/CellFoodData';
@@ -53,6 +55,8 @@ export default function App() {
         <Tab.Screen name="FoodLevel" component={FoodLevel} />
         <Tab.Screen name="WaterLevel" component={WaterLevel} />
       </Tab.Navigator>
+      {/* <Toast ref={(ref) => Toast.setRef(ref)} /> */}
+      <Toast />
     </NavigationContainer>
   );
 }
