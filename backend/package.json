@@ -4,7 +4,7 @@
   "description": "Pet Feeder Monitoring Backend",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "nodemon server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Reden",
