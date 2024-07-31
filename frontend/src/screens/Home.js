@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
     height: 200,
     justifyContent: 'space-between' 
   },
-  sensorTitle: { fontSize: 20, marginBottom: 10},
+  sensorTitle: { fontSize: 20, marginBottom: 10, marginTop: 10, fontWeight: '500',},
   scale: { 
     width: 150, 
     height: 150, 

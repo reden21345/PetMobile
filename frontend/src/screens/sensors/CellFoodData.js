@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   title: { textAlign: 'center', fontSize: 24, marginBottom: 20, fontWeight: '700', color: '#f39c12'  },
   tableContainer: { flex: 1, flexDirection: 'row' },
   head: { height: 40, backgroundColor: '#FFD35A' },
-  text: { margin: 6, color: '#000', textAlign: 'center', justifyContent: 'center', fontWeight: '400'} // textStyle is an object
+  text: { margin: 6, color: '#000', textAlign: 'center', justifyContent: 'center', fontWeight: '400'} 
 });
 
 export default DataTableScreen;

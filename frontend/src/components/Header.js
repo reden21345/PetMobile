@@ -12,15 +12,15 @@ const Header = () => {
 const styles = StyleSheet.create({
     header: {
         backgroundColor: '#4E89AE',
-        height: 110,
+        height: 80,
         alignItems: "center",
         justifyContent: "center",
     },
     title: {
         color: "#F3F0D7",
         fontSize: 28,
-        fontWeight: "900",
-        paddingTop: 50,
+        fontWeight: "1000",
+        paddingTop: 30,
     },
 });
 
