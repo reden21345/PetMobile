@@ -3,7 +3,6 @@ import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-nati
 import axios from 'axios';
 import { FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons';
 import baseURL from '../../assets/common/baseurl';
-import Header from '../components/Header';
 import Toast from 'react-native-toast-message';
 
 const Home = () => {
@@ -61,7 +60,7 @@ const Home = () => {
           },
         });
       }
-      if (newLatestData.pH.ph <= 6 || newLatestData.pH.ph > 8) {
+      if (newLatestData.pH.ph <= 3 || newLatestData.pH.ph > 8) {
         Toast.show({
           type: 'error',
           text1: 'Warning',
@@ -84,7 +83,7 @@ const Home = () => {
     return () => clearInterval(interval); // Cleanup on component unmount
   }, []);
 
-  const renderScale = (title, value, icon, unit, style) => (
+  const renderScale = (title, value, icon, unit, style, toastMessage) => (
     <View style={[styles.sensorContainer, style]}>
       <Text style={styles.sensorTitle}>{title}</Text>
       <View style={[styles.scale, style]}>
@@ -94,76 +93,104 @@ const Home = () => {
     </View>
   );
 
+  const getToastMessage = (dataType, value) => {
+    if (dataType === 'foodLevel' && value <= 20) {
+      return {
+        text1: 'Warning',
+        text2: 'Food stock is low!',
+        onClose: () => Toast.hide(),
+      };
+    }
+    if (dataType === 'pH' && (value <= 6 || value > 8)) {
+      return {
+        text1: 'Warning',
+        text2: 'pH level is not safe!',
+        onClose: () => Toast.hide(),
+      };
+    }
+    return null;
+  };
+
   return (
     <ScrollView style={styles.container}>
-      <Header title="Pet Feeder Monitoring" />
-      <Text style={styles.title}>Latest Sensor Data</Text>
-      <View style={styles.chartContainer}>
+      <View style={styles.row}>
         {renderScale(
-          'Cell Food',
+          'Food Weight',
           latestData.cellFood.weight,
           <FontAwesome5 name="utensils" size={64} color="black" />,
           'g',
-          styles.cellFood
+          styles.cellFood,
+          getToastMessage('cellFood', latestData.cellFood.weight)
         )}
         {renderScale(
-          'Cell Weight',
+          'Cat Weight',
           latestData.cellWeight.weightScale,
           <FontAwesome5 name="weight" size={64} color="black" />,
           'kg',
-          styles.cellWeight
+          styles.cellWeight,
+          getToastMessage('cellWeight', latestData.cellWeight.weightScale)
         )}
+      </View>
+      <View style={styles.row}>
         {renderScale(
-          'pH',
+          'pH Level',
           latestData.pH.ph,
           <MaterialCommunityIcons name="water-percent" size={64} color="black" />,
           'pH',
-          styles.pH
+          styles.pH,
+          getToastMessage('pH', latestData.pH.ph)
         )}
         {renderScale(
           'RFID',
           latestData.rfid.uid,
           <MaterialCommunityIcons name="tag" size={64} color="black" />,
           '',
-          styles.rfid
+          styles.rfid,
+          getToastMessage('rfid', latestData.rfid.uid)
         )}
+      </View>
+      <View style={styles.row}>
         {renderScale(
           'Food Level',
           latestData.foodLevel.foodLevel,
           <FontAwesome5 name="box" size={64} color="black" />,
           'g',
-          styles.foodLevel
+          styles.foodLevel,
+          getToastMessage('foodLevel', latestData.foodLevel.foodLevel)
         )}
         {renderScale(
           'Water Level',
           latestData.waterLevel.waterLevel,
           <MaterialCommunityIcons name="cup-water" size={64} color="black" />,
           '%',
-          styles.waterLevel
+          styles.waterLevel,
+          getToastMessage('waterLevel', latestData.waterLevel.waterLevel)
         )}
       </View>
-      <Toast config={{
-        error: ({ text1, text2, props }) => (
-          <View style={styles.toastContainer}>
-            <Text style={styles.toastText1}>{text1}</Text>
-            <Text style={styles.toastText2}>{text2}</Text>
-            <TouchableOpacity onPress={props.onClose}>
-              <Text style={styles.toastCloseButton}>X</Text>
-            </TouchableOpacity>
-          </View>
-        ),
-      }} />
     </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 16, backgroundColor: '#fff' },
-  title: { fontSize: 24, marginBottom: 16, textAlign: 'center' },
-  chartContainer: { flex: 1, justifyContent: 'center', alignItems: 'center' },
-  sensorContainer: { marginBottom: 20, alignItems: 'center' },
-  sensorTitle: { fontSize: 20, marginBottom: 10 },
-  scale: { width: 200, height: 200, justifyContent: 'center', alignItems: 'center', borderRadius: 100, borderWidth: 5 },
+  row: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 20 },
+  sensorContainer: { 
+    flex: 1, 
+    alignItems: 'center', 
+    marginHorizontal: 10, 
+    height: 200,
+    justifyContent: 'space-between' 
+  },
+  sensorTitle: { fontSize: 20, marginBottom: 10},
+  scale: { 
+    width: 150, 
+    height: 150, 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    borderRadius: 75, 
+    borderWidth: 5,
+    marginBottom: 20,
+  },
   scaleText: { fontSize: 18, marginTop: 10 },
   cellFood: { borderColor: '#f39c12', backgroundColor: '#f7dc6f' },
   cellWeight: { borderColor: '#27ae60', backgroundColor: '#abebc6' },
@@ -171,7 +198,16 @@ const styles = StyleSheet.create({
   rfid: { borderColor: '#8e44ad', backgroundColor: '#d7bde2' },
   foodLevel: { borderColor: '#e67e22', backgroundColor: '#f0b27a' },
   waterLevel: { borderColor: '#3498db', backgroundColor: '#85c1e9' },
-  toastContainer: { flexDirection: 'row', alignItems: 'center', backgroundColor: 'red', padding: 10, borderRadius: 5 },
+  toastContainer: { 
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    backgroundColor: 'red', 
+    padding: 10, 
+    borderRadius: 5, 
+    position: 'absolute', 
+    // bottom: 0, // Positioned at the bottom of the sensor container
+    width: '100%',
+  },
   toastText1: { color: 'white', fontWeight: 'bold', marginRight: 10 },
   toastText2: { color: 'white', marginRight: 10 },
   toastCloseButton: { color: 'white', fontWeight: 'bold' },

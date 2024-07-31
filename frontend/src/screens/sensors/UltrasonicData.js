@@ -43,13 +43,12 @@ const DataTableScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Header title="Pet Feeder Monitoring" />
       <Text style={styles.title}>Food Level History</Text>
       <ScrollView>
         <View style={styles.tableContainer}>
-          <Table borderStyle={{ borderWidth: 2, borderColor: '#c8e1ff' }}>
-            <Row data={tableHead} style={styles.head} textStyle={styles.text} widthArr={[100, 50, 200]} />
-            <Rows data={tableData} textStyle={styles.text} widthArr={[100, 50, 200]} />
+          <Table borderStyle={{ borderWidth: 2, borderColor: '#e67e22' }}>
+            <Row data={tableHead} style={styles.head} textStyle={styles.text} widthArr={[125, 50, 200]} />
+            <Rows data={tableData} textStyle={styles.text} widthArr={[125, 50, 200]} />
           </Table>
         </View>
       </ScrollView>
@@ -60,10 +59,10 @@ const DataTableScreen = () => {
 // Define styles
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
-  title: { textAlign: 'center', fontSize: 24, marginBottom: 20 },
-  tableContainer: { flex: 1, flexDirection: 'row' }, // Ensure the table takes full width
-  head: { height: 40, backgroundColor: '#f1f8ff' },
-  text: { margin: 6, color: '#000' } // textStyle is an object
+  title: { textAlign: 'center', fontSize: 24, marginBottom: 20, fontWeight: '700',color: '#e67e22' },
+  tableContainer: { flex: 1, flexDirection: 'row' },
+  head: { height: 40, backgroundColor: '#f0b27a' },
+  text: { margin: 6, color: '#000', textAlign: 'center', justifyContent: 'center', fontWeight: '400',}
 });
 
 export default DataTableScreen;
